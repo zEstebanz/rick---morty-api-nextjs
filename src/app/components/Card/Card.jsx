@@ -3,13 +3,15 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { apiUrl } from '@/app/api/url'
 
-const useRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+// ... (import statements)
+
+const generateRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
 export default function Card() {
     const [character, setCharacter] = useState(null);
     const [error, setError] = useState(null);
     const [isPending, setIsPending] = useState(false);
-    const [characterId, setCharacterId] = useState(useRandomNumber(1, 826));
+    const [characterId, setCharacterId] = useState(generateRandomNumber(1, 826));
 
     const loader = () => {
         return `${apiUrl}/avatar/${characterId}.jpeg`;
@@ -22,7 +24,7 @@ export default function Card() {
             setCharacter(null);
 
             // Obtener un nuevo characterId al hacer clic
-            const newCharacterId = useRandomNumber(1, 826);
+            const newCharacterId = generateRandomNumber(1, 826);
             setCharacterId(newCharacterId);
 
             const response = await fetch(`${apiUrl}${newCharacterId}`);
