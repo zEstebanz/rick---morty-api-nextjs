@@ -3,42 +3,39 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { apiUrl } from '@/app/api/url'
 
-// ... (import statements)
-const useRandomNumber = (min, max) => { return Math.floor(Math.random() * (max - min + 1) + min) };
+const useRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
 export default function Card() {
-
-
-    const [character, setCharacter] = useState(null)
-    const [error, setError] = useState(null)
-    const [isPending, setIsPending] = useState(false)
-    const [characterId, setCharacterId] = useState(useRandomNumber(1, 826))
+    const [character, setCharacter] = useState(null);
+    const [error, setError] = useState(null);
+    const [isPending, setIsPending] = useState(false);
+    const [characterId, setCharacterId] = useState(useRandomNumber(1, 826));
 
     const loader = () => {
-        return `${apiUrl}/avatar/${characterId}.jpeg`
-    }
+        return `${apiUrl}/avatar/${characterId}.jpeg`;
+    };
 
     const handleClick = async () => {
         try {
-            setError(false)
-            setIsPending(true)
-            setCharacter(null)
+            setError(false);
+            setIsPending(true);
+            setCharacter(null);
 
             // Obtener un nuevo characterId al hacer clic
-            const newCharacterId = useRandomNumber(1, 826)
-            setCharacterId(newCharacterId)
+            const newCharacterId = useRandomNumber(1, 826);
+            setCharacterId(newCharacterId);
 
-            const response = await fetch(`${apiUrl}${newCharacterId}`)
-            const jsonResponse = await response.json()
+            const response = await fetch(`${apiUrl}${newCharacterId}`);
+            const jsonResponse = await response.json();
 
-            setIsPending(false)
-            setCharacter(jsonResponse)
+            setIsPending(false);
+            setCharacter(jsonResponse);
         } catch (error) {
-            setError(error)
-            setIsPending(false)
-            setCharacter(null)
+            setError(error);
+            setIsPending(false);
+            setCharacter(null);
         }
-    }
+    };
 
     return (
         <section className="section-card">
