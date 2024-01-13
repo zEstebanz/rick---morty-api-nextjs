@@ -11,7 +11,7 @@ export default function Card() {
     const [error, setError] = useState(null)
     const [isPending, setIsPending] = useState(false)
     const [characterId, setCharacterId] = useState(useRandomNumber(1, 826))
-
+ 
     const loader = () => {
         return `${apiUrl}/avatar/${characterId}.jpeg`
     }
