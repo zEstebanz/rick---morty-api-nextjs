@@ -15,15 +15,12 @@ const Footer = () => {
           </Link>
           <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-white sm:mb-0 dark:text-gray-400">
             <li className="flex items-center">
-              <img src="" className="h-7 mr-6" />
               <Link href="https://github.com/zEstebanz" className="icon text-2xl hover:underline md:mr-6 text-white" target='_blank'><FaGithub /> </Link>
             </li>
             <li className="flex items-center">
-              <img src="" className="h-7 mr-6" />
               <Link href="https://www.linkedin.com/in/esteban-oller-2b7a5a153/" className="icon text-2xl hover:underline md:mr-6 text-white" target='_blank'><FaLinkedin /></Link>
             </li>
             <li className="flex items-center">
-              <img src="" className="h-7 mr-6" />
               <Link href="https://diario-mk.vercel.app/" className="icon text-2xl hover:underline md:mr-6 text-white" target='_blank'><FaNewspaper /></Link>
             </li>
           </ul>
