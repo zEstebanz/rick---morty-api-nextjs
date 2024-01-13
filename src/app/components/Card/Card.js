@@ -4,27 +4,29 @@ import { useState } from 'react'
 import { apiUrl } from '@/app/api/url'
 import { useRandomNumber } from '../../../../hooks/useRandomNumber'
 
+// ... (import statements)
 
 export default function Card() {
-    // Se creean 3 estados de generacion
     const [character, setCharacter] = useState(null)
     const [error, setError] = useState(null)
     const [isPending, setIsPending] = useState(false)
-    const characterId = useRandomNumber(1, 826)
+    const [characterId, setCharacterId] = useState(useRandomNumber(1, 826))
 
     const loader = () => {
         return `${apiUrl}/avatar/${characterId}.jpeg`
     }
 
-    const handleClick = async (id) => {
+    const handleClick = async () => {
         try {
-            id = characterId
-
             setError(false)
             setIsPending(true)
             setCharacter(null)
 
-            const response = await fetch(`${apiUrl}${id}`)
+            // Obtener un nuevo characterId al hacer clic
+            const newCharacterId = useRandomNumber(1, 826)
+            setCharacterId(newCharacterId)
+
+            const response = await fetch(`${apiUrl}${newCharacterId}`)
             const jsonResponse = await response.json()
 
             setIsPending(false)
@@ -62,6 +64,5 @@ export default function Card() {
                 </div>
             )}
         </section>
-
     )
 }
