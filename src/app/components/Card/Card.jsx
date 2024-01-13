@@ -2,16 +2,18 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { apiUrl } from '@/app/api/url'
-import { useRandomNumber } from '../../../../hooks/useRandomNumber'
 
 // ... (import statements)
+const useRandomNumber = (min, max) => { return Math.floor(Math.random() * (max - min + 1) + min) };
 
 export default function Card() {
+
+
     const [character, setCharacter] = useState(null)
     const [error, setError] = useState(null)
     const [isPending, setIsPending] = useState(false)
     const [characterId, setCharacterId] = useState(useRandomNumber(1, 826))
- 
+
     const loader = () => {
         return `${apiUrl}/avatar/${characterId}.jpeg`
     }
