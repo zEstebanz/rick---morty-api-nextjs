@@ -1,27 +1,118 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Creepster&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* Colores de Rick and Morty */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --color-rick: #ffd700;
+  /* Amarillo brillante como el pelo de Rick */
+  --color-morty: #6f42c1;
+  /* Púrpura oscuro como el pantalón de Morty */
+  --color-celeste: #00bfff;
+  /* Azul claro como los portales */
+  --color-meeseeks: #ff6347;
+  /* Rojo anaranjado como Mr. Meeseeks */
+  --color-galactic-federation: #4caf50;
+  /* Verde como la Federación Galáctica */
+  --color-interdimensional-cable: #ff8c00;
+  /* Naranja como el cable interdimensional */
+  --color-unity: #9400d3;
+  /* Violeta oscuro como Unity */
+  --color-cromulon: #ff0000;
+  /* Rojo brillante como Cromulon */
+  --color-plumbus: #a52a2a;
+  /* Marrón oscuro como el Plumbus */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Otros colores comunes */
+:root {
+  --color-background1: #13163e;
+  --color-background2: #141529;
+  /* Fondo oscuro */
+  --color-text: #ffffff;
+  /* Texto blanco */
+  --color-link: #61dafb;
+  /* Color de enlace */
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.section-main {
+  position: relative;
+  background: linear-gradient(#000, var(--color-background1), var(--color-background2), #000);
 }
+
+.title {
+  text-align: center;
+  padding-top: 10px;
+  font-weight: 400;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  color: var(--color-celeste);
+  text-shadow: 4px 4px 0px #00ff00;
+}
+
+.section-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  /* Texto blanco */
+  padding: 20px;
+  /* Espaciado interno general */
+}
+
+.button {
+  /* Estilos del botón, puedes personalizar según tus preferencias */
+  background-color: var(--color-galactic-federation);
+  color: var(--color-text);
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+  /* Espaciado inferior general */
+}
+
+.button:hover {
+  background-color: var(--color-morty);
+  transition: 0.5s;
+}
+
+.card {
+  max-width: 400px;
+  /* Ajusta según sea necesario */
+  background-color: rgba(0, 0, 0, 0.76);
+  padding: 10px 10px 0px 10px;
+  /* Color de fondo de la tarjeta */
+  border-radius: 8px;
+  /* Bordes redondeados */
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Espaciado superior entre el botón y la tarjeta */
+}
+
+.card-content h2 {
+  color: var(--color-morty);
+}
+.card-content span {
+  color: var(--color-galactic-federation);
+}
+
+.bgFooter {
+  background-color: var(--color-background2);
+}
+
+.titleFooter {
+  text-align: center;
+  padding-top: 10px;
+  font-weight: 400;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  color: var(--color-celeste);
+  text-shadow: 2px 1px 0px #00ff00;
+}/*# sourceMappingURL=globals.css.map */

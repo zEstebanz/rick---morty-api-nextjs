@@ -1,0 +1,67 @@
+"use client"
+import Image from 'next/image'
+import { useState } from 'react'
+import { apiUrl } from '@/app/api/url'
+import { useRandomNumber } from '../../../../hooks/useRandomNumber'
+
+
+export default function Card() {
+    // Se creean 3 estados de generacion
+    const [character, setCharacter] = useState(null)
+    const [error, setError] = useState(null)
+    const [isPending, setIsPending] = useState(false)
+    const characterId = useRandomNumber(1, 826)
+
+    const loader = () => {
+        return `${apiUrl}/avatar/${characterId}.jpeg`
+    }
+
+    const handleClick = async (id) => {
+        try {
+            id = characterId
+
+            setError(false)
+            setIsPending(true)
+            setCharacter(null)
+
+            const response = await fetch(`${apiUrl}${id}`)
+            const jsonResponse = await response.json()
+
+            setIsPending(false)
+            setCharacter(jsonResponse)
+        } catch (error) {
+            setError(error)
+            setIsPending(false)
+            setCharacter(null)
+        }
+    }
+
+    return (
+        <section className="section-card">
+            <button onClick={handleClick} className='button'>Random</button>
+            {error && <p>{error}</p>}
+            {isPending && <p>Loading...</p>}
+            {character && (
+                <div className="card-wrapper">
+                    <div className="card">
+                        <Image
+                            loader={loader}
+                            src={character.image}
+                            alt="Character's image"
+                            width="300"
+                            height="300"
+                        />
+                        <div className="card-content text-white">
+                            <h2 className="text-xl font-semibold mb-2 pt-2">{character.name}</h2>
+                            <p><span>Gender:</span> {character.gender}</p>
+                            <p><span>Species: </span>{character.species}</p>
+                            <p><span>Status: </span>{character.status}</p>
+                            <p><span>ID: </span>{character.id}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </section>
+
+    )
+}
